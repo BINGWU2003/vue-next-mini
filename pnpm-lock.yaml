@@ -70,10 +70,19 @@ importers:
         version: 16.0.3(rollup@4.54.0)
       '@rollup/plugin-typescript':
         specifier: ^12.3.0
-        version: 12.3.0(rollup@4.54.0)(typescript@5.9.3)
+        version: 12.3.0(rollup@4.54.0)(tslib@2.8.1)(typescript@5.9.3)
+      cross-env:
+        specifier: ^10.1.0
+        version: 10.1.0
       rollup:
         specifier: ^4.54.0
         version: 4.54.0
+      rollup-plugin-dts:
+        specifier: ^6.3.0
+        version: 6.3.0(rollup@4.54.0)(typescript@5.9.3)
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
       typescript:
         specifier: ^5.3.3
         version: 5.9.3
@@ -215,6 +224,9 @@ packages:
   '@commitlint/types@20.2.0':
     resolution: {integrity: sha512-KTy0OqRDLR5y/zZMnizyx09z/rPlPC/zKhYgH8o/q6PuAjoQAKlRfY4zzv0M64yybQ//6//4H1n14pxaLZfUnA==}
     engines: {node: '>=v18'}
+
+  '@epic-web/invariant@1.0.0':
+    resolution: {integrity: sha512-lrTPqgvfFQtR/eY/qkIzp98OGdNJu0m5ji3q/nJI8v3SXkRKEnWiOxMmbvcSoAIzv/cGiuvRy57k4suKQSAdwA==}
 
   '@eslint-community/eslint-utils@4.9.0':
     resolution: {integrity: sha512-ayVFHdtZ+hsq1t2Dy24wCmGXGe4q9Gu3smhLYALJrr473ZH27MsnSL+LKUlimp4BWJqMDMLmPpx/Q9R3OAlL4g==}
@@ -691,6 +703,11 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  cross-env@10.1.0:
+    resolution: {integrity: sha512-GsYosgnACZTADcmEyJctkJIoqAhHjttw7RsFrVoJNXbsWWqaq6Ym+7kZjq6mS45O0jij6vtiReppKQEtqWy6Dw==}
+    engines: {node: '>=20'}
+    hasBin: true
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -1444,6 +1461,13 @@ packages:
     engines: {node: 20 || >=22}
     hasBin: true
 
+  rollup-plugin-dts@6.3.0:
+    resolution: {integrity: sha512-d0UrqxYd8KyZ6i3M2Nx7WOMy708qsV/7fTHMHxCMCBOAe3V/U7OMPu5GkX8hC+cmkHhzGnfeYongl1IgiooddA==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      rollup: ^3.29.4 || ^4
+      typescript: ^4.5 || ^5.0
+
   rollup@4.54.0:
     resolution: {integrity: sha512-3nk8Y3a9Ea8szgKhinMlGMhGMw89mqule3KWczxhIzqudyHdCIOHw8WJlj/r329fACjKLEh13ZSk7oE22kyeIw==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
@@ -1569,6 +1593,9 @@ packages:
     engines: {node: '>=18.12'}
     peerDependencies:
       typescript: '>=4.8.4'
+
+  tslib@2.8.1:
+    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
   turbo-darwin-64@2.7.2:
     resolution: {integrity: sha512-dxY3X6ezcT5vm3coK6VGixbrhplbQMwgNsCsvZamS/+/6JiebqW9DKt4NwpgYXhDY2HdH00I7FWs3wkVuan4rA==}
@@ -1965,6 +1992,8 @@ snapshots:
       '@types/conventional-commits-parser': 5.0.2
       chalk: 5.6.2
 
+  '@epic-web/invariant@1.0.0': {}
+
   '@eslint-community/eslint-utils@4.9.0(eslint@8.57.1)':
     dependencies:
       eslint: 8.57.1
@@ -2076,13 +2105,14 @@ snapshots:
     optionalDependencies:
       rollup: 4.54.0
 
-  '@rollup/plugin-typescript@12.3.0(rollup@4.54.0)(typescript@5.9.3)':
+  '@rollup/plugin-typescript@12.3.0(rollup@4.54.0)(tslib@2.8.1)(typescript@5.9.3)':
     dependencies:
       '@rollup/pluginutils': 5.3.0(rollup@4.54.0)
       resolve: 1.22.11
       typescript: 5.9.3
     optionalDependencies:
       rollup: 4.54.0
+      tslib: 2.8.1
 
   '@rollup/pluginutils@5.3.0(rollup@4.54.0)':
     dependencies:
@@ -2414,6 +2444,11 @@ snapshots:
       parse-json: 5.2.0
     optionalDependencies:
       typescript: 5.9.3
+
+  cross-env@10.1.0:
+    dependencies:
+      '@epic-web/invariant': 1.0.0
+      cross-spawn: 7.0.6
 
   cross-spawn@7.0.6:
     dependencies:
@@ -3106,6 +3141,14 @@ snapshots:
       glob: 11.0.3
       package-json-from-dist: 1.0.1
 
+  rollup-plugin-dts@6.3.0(rollup@4.54.0)(typescript@5.9.3):
+    dependencies:
+      magic-string: 0.30.21
+      rollup: 4.54.0
+      typescript: 5.9.3
+    optionalDependencies:
+      '@babel/code-frame': 7.27.1
+
   rollup@4.54.0:
     dependencies:
       '@types/estree': 1.0.8
@@ -3235,6 +3278,8 @@ snapshots:
   ts-api-utils@2.2.0(typescript@5.9.3):
     dependencies:
       typescript: 5.9.3
+
+  tslib@2.8.1: {}
 
   turbo-darwin-64@2.7.2:
     optional: true

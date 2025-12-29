@@ -12,8 +12,7 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@vue-next-mini/shared": ["packages/vue/shared/src"],
-      "@vue-next-mini/ui": ["packages/ui/src"]
+      "@vue-next-mini/*": ["packages/vue/*/src"]
     }
   }
 }

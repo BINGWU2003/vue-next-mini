@@ -1,7 +1,9 @@
+import { add } from '@vue-next-mini/reactivity';
 /**
  * 格式化日期
  */
 export function formatDate(date: Date): string {
+  add(1, 2);
   return date.toLocaleDateString('zh-CN');
 }
 

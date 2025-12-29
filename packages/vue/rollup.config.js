@@ -1,9 +1,9 @@
-import { RollupOptions } from 'rollup';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
+import dts from 'rollup-plugin-dts';
 
-const configs: RollupOptions[] = [
+const configs = [
   // ESM 格式
   {
     input: 'index.ts',
@@ -17,26 +17,32 @@ const configs: RollupOptions[] = [
       commonjs(),
       typescript({
         tsconfig: './tsconfig.json',
-        declaration: true,
-        declarationDir: './dist',
       }),
     ],
   },
-  // CJS 格式
+  // 类型声明文件 - 合并所有 .d.ts 文件
   {
     input: 'index.ts',
     output: {
-      file: 'dist/index.js',
-      format: 'cjs',
+      file: 'dist/index.d.ts',
+      format: 'es',
+    },
+    plugins: [dts()],
+  },
+  // iife
+  {
+    input: 'index.ts',
+    output: {
+      file: 'dist/index.iife.js',
+      format: 'iife',
       sourcemap: true,
-      exports: 'named',
+      name: 'VueNextMini',
     },
     plugins: [
       resolve(),
       commonjs(),
       typescript({
         tsconfig: './tsconfig.json',
-        declaration: false,
       }),
     ],
   },
