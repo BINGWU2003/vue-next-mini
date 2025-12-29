@@ -1,0 +1,36 @@
+{
+  "name": "@vue-next-mini/ui",
+  "version": "1.0.1",
+  "description": "Shared UI components",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "clean": "rimraf dist && rimraf node_modules",
+    "prepublishOnly": "pnpm build"
+  },
+  "peerDependencies": {
+    "@vue-next-mini/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@vue-next-mini/shared": "workspace:*",
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
