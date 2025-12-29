@@ -1,5 +1,5 @@
 {
-  "name": "@vue-next-mini/shared",
+  "name": "@vue-next-mini/vue",
   "version": "1.0.1",
   "description": "Shared utilities and helpers",
   "main": "./dist/index.js",
@@ -16,13 +16,16 @@
     "dist"
   ],
   "scripts": {
-    "dev": "tsup --watch",
-    "build": "tsup",
+    "dev": "rollup -c --watch",
+    "build": "rollup -c",
     "clean": "rimraf dist && rimraf node_modules",
     "prepublishOnly": "pnpm build"
   },
   "devDependencies": {
-    "tsup": "^8.0.0",
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "rollup": "^4.54.0",
     "typescript": "^5.3.3"
   },
   "publishConfig": {
