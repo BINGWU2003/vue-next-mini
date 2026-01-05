@@ -11,9 +11,8 @@ export function createGetter() {
 
 export function createSetter() {
   return function set(target: any, key: string | symbol, value: any, receiver: any) {
-    const result = Reflect.set(target, key, value, receiver);
     trigger(target, key, receiver);
-    return result;
+    return Reflect.set(target, key, value, receiver);
   };
 }
 
