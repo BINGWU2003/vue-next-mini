@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../dist/index.iife.js"></script>
+  </head>
+  <body>
+    <script>
+      console.log(VueNextMini);
+      const { reactive } = VueNextMini;
+
+      const state = reactive({
+        name: 'John',
+        age: 18,
+      });
+      console.log(state.age);
+      state.age = 100;
+    </script>
+  </body>
+</html>

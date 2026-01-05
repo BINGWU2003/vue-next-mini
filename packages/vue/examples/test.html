@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const target = {
+        _name: 'Vue',
+        get name() {
+          // 这里的 this 也就是关键所在
+          return this._name;
+        },
+      };
+
+      const proxy = new Proxy(target, {
+        get(target, key, receiver) {
+          console.log('target:', target);
+          console.log('receiver:', receiver);
+          console.log('触发拦截:', key);
+          // 错误：直接返回 target[key]，此时 getter 里的 this 指向 target
+          return target[key];
+        },
+      });
+
+      const user = {
+        __proto__: proxy,
+        _name: 'React', // 我们希望继承后，this._name 读的是 user 的 _name
+      };
+
+      // 我们期望输出 'React' (因为 user 继承了 proxy)，且触发拦截
+      // 实际结果：输出 'Vue'。
+      // 原因：Proxy 里的 target[key] 执行时，getter 里的 this 绑定在了 target 上，而不是调用者 user 上。
+      console.log(user.name);
+    </script>
+  </body>
+</html>

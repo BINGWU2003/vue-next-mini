@@ -1,3 +1,3 @@
-import * as reactivity from './reactivity/src/index';
+import * as reactivity from './reactivity/index';
 import * as shared from './shared/src/index';
-export { reactivity, shared };
+export default { ...reactivity, ...shared };

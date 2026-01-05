@@ -1,4 +1,4 @@
-import { add } from '@vue-next-mini/reactivity';
+import { add } from 'packages/vue/reactivity';
 /**
  * 格式化日期
  */
