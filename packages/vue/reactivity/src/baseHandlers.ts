@@ -4,15 +4,20 @@ import { track, trigger } from './effect';
 // 通过Reflect来修改target中getter和setter的this指向，使其指向receiver(proxy对象)
 export function createGetter() {
   return function get(target: any, key: string | symbol, receiver: any) {
-    track(target, key, receiver);
-    return Reflect.get(target, key, receiver);
+    const res = Reflect.get(target, key, receiver);
+    track(target, key);
+    return res;
   };
 }
 
 export function createSetter() {
   return function set(target: any, key: string | symbol, value: any, receiver: any) {
-    trigger(target, key, receiver);
-    return Reflect.set(target, key, value, receiver);
+    // 必须使用Reflect.set来设置属性值，从而保证trigger中的target和key正确
+    const res = Reflect.set(target, key, value, receiver);
+
+    trigger(target, key);
+
+    return res;
   };
 }
 
