@@ -1,0 +1,98 @@
+<mxfile host="65bd71144e">
+    <diagram id="919dxHr6MCisFvvh-o0H" name="第 1 页">
+        <mxGraphModel dx="2133" dy="799" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="5" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="3" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="235" y="270" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="3" value="&lt;div style=&quot;color: rgb(171, 178, 191); font-family: &amp;quot;JetBrains Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;span style=&quot;color: rgb(97, 175, 239);&quot;&gt;reactive(target)&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="140" width="210" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" style="edgeStyle=none;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="6" target="20" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="100" y="390" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="38" value="&lt;span style=&quot;color: rgb(229, 192, 123); font-family: &amp;quot;JetBrains Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; white-space-collapse: preserve; background-color: rgb(251, 251, 251);&quot;&gt;mutableHandlers&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="18" vertex="1" connectable="0">
+                    <mxGeometry x="-0.0331" y="2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="22" value="&lt;br&gt;&lt;span style=&quot;color: rgb(229, 192, 123); font-family: &amp;quot;JetBrains Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;reactiveMap&lt;/span&gt;" style="edgeStyle=none;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="6" target="23" edge="1">
+                    <mxGeometry x="0.1577" y="13" relative="1" as="geometry">
+                        <mxPoint x="380" y="400" as="targetPoint"/>
+                        <Array as="points"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6" value="&lt;div style=&quot;color: rgb(171, 178, 191); font-family: &amp;quot;JetBrains Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;span&gt;&lt;span style=&quot;color: rgb(97, 175, 239);&quot;&gt;createReactiveObject&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: rgb(224, 108, 117);&quot;&gt;target&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: rgb(229, 192, 123);&quot;&gt;mutableHandlers&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;, &lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;span&gt;&lt;span style=&quot;color: rgb(229, 192, 123);&quot;&gt;reactiveMap&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="125" y="270" width="220" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" style="edgeStyle=none;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.538;entryY=-0.008;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="20" target="26" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-15" y="460" as="sourcePoint"/>
+                        <mxPoint x="-140" y="550" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="36" value="&lt;span style=&quot;color: rgb(97, 175, 239); font-family: &amp;quot;JetBrains Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; white-space-collapse: preserve; background-color: rgb(251, 251, 251);&quot;&gt;createGetter&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="29" vertex="1" connectable="0">
+                    <mxGeometry x="-0.0679" y="-4" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="20" value="&lt;div style=&quot;color: rgb(171, 178, 191); font-family: &amp;quot;JetBrains Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;span style=&quot;color: rgb(97, 175, 239);&quot;&gt;get：&lt;/span&gt;&lt;span style=&quot;color: rgb(97, 175, 239);&quot;&gt;createGetter&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;()&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;span style=&quot;color: rgb(97, 175, 239);&quot;&gt;set：&lt;/span&gt;&lt;span style=&quot;color: rgb(97, 175, 239);&quot;&gt;createSetter()&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="-120" y="400" width="210" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="&lt;div style=&quot;color: rgb(171, 178, 191); font-family: &amp;quot;JetBrains Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;span&gt;&lt;span style=&quot;color: rgb(198, 120, 221);&quot;&gt;new&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: rgb(229, 192, 123);&quot;&gt;WeakMap&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="390" y="400" width="210" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="reactive函数执行主流程" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="142" y="90" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="26" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-135" y="700" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="43" value="依赖收集" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="40" vertex="1" connectable="0">
+                    <mxGeometry x="0.0118" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="26" value="&lt;div style=&quot;color: rgb(171, 178, 191); font-family: &amp;quot;JetBrains Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;span&gt;&lt;span style=&quot;color: rgb(97, 175, 239);&quot;&gt;track&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: rgb(224, 108, 117);&quot;&gt;target&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: rgb(224, 108, 117);&quot;&gt;key&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="-240" y="555" width="210" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="32" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="95" y="700" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="47" value="派发更新" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="44" vertex="1" connectable="0">
+                    <mxGeometry x="-0.1059" y="1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="32" value="&lt;div style=&quot;color: rgb(171, 178, 191); font-family: &amp;quot;JetBrains Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;span&gt;&lt;span style=&quot;color: rgb(97, 175, 239);&quot;&gt;trigger&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: rgb(224, 108, 117);&quot;&gt;target&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;, &lt;/span&gt;&lt;span style=&quot;color: rgb(224, 108, 117);&quot;&gt;key&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="-10" y="555" width="210" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" style="edgeStyle=none;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="20" target="32" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="&lt;span style=&quot;color: rgb(97, 175, 239); font-family: &amp;quot;JetBrains Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; white-space-collapse: preserve; background-color: rgb(251, 251, 251);&quot;&gt;createSetter&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="33" vertex="1" connectable="0">
+                    <mxGeometry x="-0.0857" y="1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="41" value="&lt;div style=&quot;color: rgb(171, 178, 191); font-family: &amp;quot;JetBrains Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;span&gt;&lt;span style=&quot;color: rgb(97, 175, 239);&quot;&gt;trackEffects&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: rgb(224, 108, 117);&quot;&gt;dep&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="-240" y="700" width="210" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="&lt;div style=&quot;color: rgb(171, 178, 191); font-family: &amp;quot;JetBrains Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;span&gt;&lt;span style=&quot;color: rgb(97, 175, 239);&quot;&gt;triggerEffects&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: rgb(229, 192, 123);&quot;&gt;dep&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="-10" y="700" width="210" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
