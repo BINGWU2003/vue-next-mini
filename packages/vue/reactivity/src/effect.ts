@@ -1,5 +1,8 @@
-// 当前激活的 effect ，确保 track 的时候知道是哪个 effect 在使用数据
+import { Dep, createDep } from './dep';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+/**
+ * 当前激活的 effect ，确保 track 的时候知道是哪个 effect 在使用数据
+ * */
 export let activeEffect: ReactiveEffect | undefined;
 export class ReactiveEffect<T = any> {
   // 等价于
@@ -20,9 +23,11 @@ export function effect<T = any>(fn: () => T) {
   _effect.run();
 }
 
-// target -> key -> dep
-// 构建依赖关系
-const targetMap = new WeakMap<any, Map<any, ReactiveEffect>>();
+/**
+ * target -> key -> dep
+ * 构建依赖关系
+ **/
+const targetMap = new WeakMap<any, Map<any, Dep>>();
 
 export function track(target: any, key: string | symbol) {
   if (!activeEffect) return;
@@ -31,13 +36,34 @@ export function track(target: any, key: string | symbol) {
     depsMap = new Map();
     targetMap.set(target, depsMap);
   }
-  depsMap.set(key, activeEffect);
+  let dep = depsMap.get(key);
+  if (!dep) {
+    dep = createDep();
+    depsMap.set(key, dep);
+  }
+  trackEffects(dep);
+}
+
+/**
+ * 追踪依赖集合
+ */
+export function trackEffects(dep: Dep) {
+  if (!activeEffect) {
+    return;
+  }
+  dep.add(activeEffect);
 }
 
 export function trigger(target: any, key: string | symbol) {
   const depsMap = targetMap.get(target);
   if (!depsMap) return;
-  const effect = depsMap.get(key);
-  if (!effect) return;
-  effect.run();
+  const dep = depsMap.get(key);
+  if (!dep) return;
+  triggerEffects(dep);
+}
+/**
+ * 触发依赖集合
+ */
+export function triggerEffects(dep: Dep) {
+  dep.forEach((effect) => effect.run());
 }
