@@ -1,4 +1,5 @@
-import { add } from 'packages/vue/reactivity';
+import { add } from '../../reactivity/src/index';
+
 /**
  * 格式化日期
  */
@@ -20,3 +21,13 @@ export function sleep(ms: number): Promise<void> {
 export function generateId(): string {
   return Math.random().toString(36).substring(2, 15);
 }
+
+/**
+ * 判断是否为一个数组
+ */
+export const isArray = Array.isArray;
+
+/**
+ * 判断是否为一个对象
+ */
+export const isObject = (val: unknown) => val !== null && typeof val === 'object';

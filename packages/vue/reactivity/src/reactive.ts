@@ -1,3 +1,4 @@
+import { isObject } from '@vue-next-mini/shared';
 import { mutableHandlers } from './baseHandlers';
 
 export function createReactiveObject(
@@ -15,6 +16,10 @@ export function createReactiveObject(
 }
 export const reactiveMap = new WeakMap<object, any>();
 
-export function reactive(target: object) {
+export function reactive<T extends object>(target: T) {
   return createReactiveObject(target, mutableHandlers, reactiveMap);
+}
+
+export function toReactive(value: any) {
+  return isObject(value) ? reactive(value) : value;
 }
