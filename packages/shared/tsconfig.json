@@ -4,9 +4,9 @@
     "outDir": "./dist",
     "moduleResolution": "bundler",
     "lib": ["ES2020", "DOM"],
-    "types": []
+    "types": [],
+    "rootDir": "./src"
   },
-
-  "include": ["./**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", ".turbo"]
 }

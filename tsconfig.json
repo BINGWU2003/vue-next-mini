@@ -12,7 +12,8 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@vue-next-mini/*": ["packages/vue/*/src"]
+      "@vue-next-mini/*": ["packages/*/src"]
     }
-  }
+  },
+  "include": ["src/**/*", "packages/**/*"]
 }

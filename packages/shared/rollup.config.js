@@ -6,7 +6,7 @@ import dts from 'rollup-plugin-dts';
 const configs = [
   // ESM 格式
   {
-    input: 'index.ts',
+    input: 'src/index.ts',
     output: {
       file: 'dist/index.mjs',
       format: 'es',
@@ -20,31 +20,14 @@ const configs = [
       }),
     ],
   },
-  // 类型声明文件 - 合并所有 .d.ts 文件
+  // 类型声明文件
   {
-    input: 'index.ts',
+    input: 'src/index.ts',
     output: {
       file: 'dist/index.d.ts',
       format: 'es',
     },
     plugins: [dts()],
-  },
-  // iife
-  {
-    input: 'index.ts',
-    output: {
-      file: 'dist/index.iife.js',
-      format: 'iife',
-      sourcemap: true,
-      name: 'VueNextMini',
-    },
-    plugins: [
-      resolve(),
-      commonjs(),
-      typescript({
-        tsconfig: './tsconfig.json',
-      }),
-    ],
   },
 ];
 

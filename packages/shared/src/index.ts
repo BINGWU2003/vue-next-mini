@@ -1,9 +1,7 @@
-import { add } from '@vue-next-mini/reactivity';
 /**
  * 格式化日期
  */
 export function formatDate(date: Date): string {
-  add(1, 2);
   return date.toLocaleDateString('zh-CN');
 }
 
@@ -18,6 +16,7 @@ export function sleep(ms: number): Promise<void> {
  * 生成随机ID
  */
 export function generateId(): string {
+  console.log('generateId');
   return Math.random().toString(36).substring(2, 15);
 }
 
