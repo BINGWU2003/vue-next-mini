@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../dist/index.iife.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p id="p1"></p>
+      <p id="p2"></p>
+    </div>
+    <script>
+      console.log(VueNextMini);
+      const { ref, effect } = VueNextMini;
+
+      const state = ref('cxk');
+      effect(() => {
+        document.getElementById('p1').innerText = `Name: ${state.value}- p1`;
+      });
+      effect(() => {
+        document.getElementById('p2').innerText = `Name: ${state.value}- p2`;
+      });
+      setTimeout(() => {
+        // state.value.age = 100;
+        // state.value.name = 'Mary';
+        state.value = 'ling';
+      }, 2000);
+    </script>
+  </body>
+</html>
