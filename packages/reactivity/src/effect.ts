@@ -1,4 +1,7 @@
 import { Dep, createDep } from './dep';
+
+export type EffectScheduler = (...args: any[]) => any;
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 /**
  * 当前激活的 effect ，确保 track 的时候知道是哪个 effect 在使用数据
@@ -10,8 +13,14 @@ export class ReactiveEffect<T = any> {
   // constructor(fn: () => T) {
   //   this.fn = fn;
   // }
-  constructor(public fn: () => T) {}
+  public computed?: any = undefined;
+  constructor(
+    public fn: () => T,
+    public scheduler: EffectScheduler | null = null
+  ) {}
   run() {
+    console.log('ReactiveEffect', this);
+
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     activeEffect = this;
     return this.fn();
@@ -65,5 +74,11 @@ export function trigger(target: any, key: string | symbol) {
  * 触发依赖集合
  */
 export function triggerEffects(dep: Dep) {
-  dep.forEach((effect) => effect.run());
+  dep.forEach((effect) => {
+    if (effect.scheduler) {
+      effect.scheduler();
+    } else {
+      effect.run();
+    }
+  });
 }

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../dist/index.iife.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p id="p1"></p>
+      <p id="p2"></p>
+    </div>
+    <script>
+      console.log(VueNextMini);
+      const { reactive, effect, computed } = VueNextMini;
+
+      const state = reactive({
+        name: 'John',
+        age: 18,
+      });
+      const doubleAge = computed(() => state.age * 2);
+      effect(() => {
+        console.log('run', state);
+        document.getElementById('p1').innerText = `Age: ${doubleAge.value} - p1`;
+      });
+
+      setTimeout(() => {
+        state.age = 100;
+        state.name = 'Mary';
+      }, 2000);
+    </script>
+  </body>
+</html>
