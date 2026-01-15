@@ -74,11 +74,24 @@ export function trigger(target: any, key: string | symbol) {
  * 触发依赖集合
  */
 export function triggerEffects(dep: Dep) {
+  // 优先触发计算属性 缓存&解决死循环
   dep.forEach((effect) => {
-    if (effect.scheduler) {
-      effect.scheduler();
-    } else {
-      effect.run();
+    if (effect.computed) {
+      triggerEffect(effect);
     }
   });
+  // 后触发非计算属性
+  dep.forEach((effect) => {
+    if (!effect.computed) {
+      triggerEffect(effect);
+    }
+  });
+}
+
+export function triggerEffect(effect: ReactiveEffect) {
+  if (effect.scheduler) {
+    effect.scheduler();
+  } else {
+    effect.run();
+  }
 }

@@ -19,7 +19,10 @@
         name: 'John',
         age: 18,
       });
-      const doubleAge = computed(() => state.age * 2);
+      const doubleAge = computed(() => {
+        console.log('state', JSON.stringify(state));
+        return state.age * 2;
+      });
       effect(() => {
         console.log('run', state);
         document.getElementById('p1').innerText = `Age: ${doubleAge.value} - p1`;
