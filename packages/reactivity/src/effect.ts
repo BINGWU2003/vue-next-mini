@@ -1,6 +1,12 @@
+import { extend } from '@vue-next-mini/shared';
 import { Dep, createDep } from './dep';
 
 export type EffectScheduler = (...args: any[]) => any;
+
+export type ReactiveEffectOptions = {
+  scheduler?: EffectScheduler;
+  lazy?: boolean;
+};
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 /**
@@ -27,9 +33,13 @@ export class ReactiveEffect<T = any> {
   }
 }
 
-export function effect<T = any>(fn: () => T) {
+export function effect<T = any>(fn: () => T, options?: ReactiveEffectOptions) {
   const _effect = new ReactiveEffect(fn);
-  _effect.run();
+  // 把scheduler挂载到_effect上
+  extend(_effect, options || {});
+  if (!options || !options.lazy) {
+    _effect.run();
+  }
 }
 
 /**

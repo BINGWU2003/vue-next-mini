@@ -40,3 +40,8 @@ export const hasChanged = (value: any, oldValue: any): boolean => !Object.is(val
  */
 export const isFunction = (val: unknown): val is (...args: any[]) => any =>
   typeof val === 'function';
+
+/**
+ * 扩展对象
+ */
+export const extend = Object.assign;

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../dist/index.iife.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p id="p1"></p>
+    </div>
+    <script>
+      console.log(VueNextMini);
+      const { reactive, effect, watch } = VueNextMini;
+
+      const state = reactive({
+        name: 'John',
+        age: 18,
+      });
+      watch(
+        () => state.age,
+        (newVal, oldVal) => {
+          console.log('watch age', newVal, oldVal);
+          document.getElementById('p1').innerText = `Age changed: ${oldVal} -> ${newVal} - p1`;
+        }
+      );
+      setTimeout(() => {
+        state.age = 100;
+      }, 2000);
+    </script>
+  </body>
+</html>

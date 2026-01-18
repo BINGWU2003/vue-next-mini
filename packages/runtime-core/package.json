@@ -1,0 +1,28 @@
+{
+  "name": "@vue-next-mini/runtime-core",
+  "version": "1.0.1",
+  "description": "Runtime system for VueNextMini",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "rollup -c --watch",
+    "build": "rollup -c",
+    "clean": "rimraf dist && rimraf node_modules",
+    "prepublishOnly": "pnpm build"
+  },
+  "dependencies": {
+    "@vue-next-mini/shared": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
