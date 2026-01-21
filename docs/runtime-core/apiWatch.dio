@@ -1,0 +1,45 @@
+<mxfile host="65bd71144e">
+    <diagram id="mWys8nBg5CvxnU-lKWKD" name="第 1 页">
+        <mxGraphModel dx="1434" dy="787" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="4" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="3">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="5">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="apiWatch.ts" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="360" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&lt;div style=&quot;color: rgb(171, 178, 191); font-family: &amp;quot;JetBrains Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;span&gt;&lt;span style=&quot;color: rgb(198, 120, 221);&quot;&gt;type&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: rgb(229, 192, 123);&quot;&gt;WatchOptions&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="150" width="460" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="&lt;div style=&quot;color: rgb(171, 178, 191); font-family: &amp;quot;JetBrains Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;span&gt;&lt;span style=&quot;color: rgb(198, 120, 221);&quot;&gt;export&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: rgb(198, 120, 221);&quot;&gt;function&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: rgb(97, 175, 239);&quot;&gt;watch&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;(&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: rgb(224, 108, 117);&quot;&gt;source&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: rgb(171, 178, 191);&quot;&gt;,&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: rgb(97, 175, 239);&quot;&gt;cb&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: rgb(198, 120, 221);&quot;&gt;?&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: rgb(171, 178, 191);&quot;&gt;,&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: rgb(224, 108, 117);&quot;&gt;watchOptions&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: rgb(198, 120, 221);&quot;&gt;?&lt;/span&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;) &lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="345" y="290" width="440" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="&lt;div style=&quot;color: rgb(171, 178, 191); font-family: &amp;quot;JetBrains Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;span style=&quot;color: rgb(192, 192, 192); scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30);&quot;&gt;&lt;span style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); color: rgb(198, 120, 221);&quot;&gt;function&lt;/span&gt;&lt;span style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); color: rgb(171, 178, 191);&quot;&gt; &lt;/span&gt;&lt;span style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); color: rgb(97, 175, 239);&quot;&gt;doWatch&lt;/span&gt;&lt;span style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); color: rgb(171, 178, 191);&quot;&gt;(&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); background-color: transparent; color: rgb(224, 108, 117);&quot;&gt;source&lt;/span&gt;&lt;span style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); background-color: transparent; color: rgb(171, 178, 191);&quot;&gt;,&lt;/span&gt;&lt;span style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); background-color: transparent; color: rgb(97, 175, 239);&quot;&gt;cb&lt;/span&gt;&lt;span style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); background-color: transparent; color: rgb(198, 120, 221);&quot;&gt;?&lt;/span&gt;&lt;span style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); background-color: transparent; color: rgb(171, 178, 191);&quot;&gt;,&lt;/span&gt;&lt;span style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); background-color: transparent; color: rgb(224, 108, 117);&quot;&gt;watchOptions&lt;/span&gt;&lt;span style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); background-color: transparent; color: rgb(198, 120, 221);&quot;&gt;?&lt;/span&gt;&lt;span style=&quot;color: rgb(192, 192, 192); scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); background-color: transparent;&quot;&gt;) &lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="350" y="420" width="430" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="&lt;div style=&quot;color: rgb(171, 178, 191); font-family: &amp;quot;JetBrains Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;color: rgb(171, 178, 191); line-height: 19px;&quot;&gt;&lt;span&gt;&lt;span style=&quot;color: rgb(198, 120, 221);&quot;&gt;function&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: rgb(97, 175, 239);&quot;&gt;traverse&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: rgb(224, 108, 117);&quot;&gt;value&lt;/span&gt;&lt;span style=&quot;color: rgb(171, 178, 191);&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="350" y="540" width="430" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="5" target="6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="调用" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="10">
+                    <mxGeometry x="0.1429" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="14" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.009;entryY=0.633;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="2" target="7">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
