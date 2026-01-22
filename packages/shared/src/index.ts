@@ -45,3 +45,6 @@ export const isFunction = (val: unknown): val is (...args: any[]) => any =>
  * 扩展对象
  */
 export const extend = Object.assign;
+
+export const isString = (val: unknown): val is string => typeof val === 'string';
+export * from './shapeFlags';
