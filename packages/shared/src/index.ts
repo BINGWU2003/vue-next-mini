@@ -48,3 +48,5 @@ export const extend = Object.assign;
 
 export const isString = (val: unknown): val is string => typeof val === 'string';
 export * from './shapeFlags';
+
+export * from './normalizeProp';

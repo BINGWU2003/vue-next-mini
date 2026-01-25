@@ -1,4 +1,11 @@
-import { isString, ShapeFlags, isArray, isObject, isFunction } from '@vue-next-mini/shared';
+import {
+  isString,
+  ShapeFlags,
+  isArray,
+  isObject,
+  isFunction,
+  normalizeClass,
+} from '@vue-next-mini/shared';
 export type VNode = {
   __is_VNode: true;
   type: any;
@@ -17,9 +24,14 @@ export function createVNode(type: any, props: any, children: any): VNode {
     : isObject(type)
       ? ShapeFlags.STATEFUL_COMPONENT
       : 0;
+  if (props) {
+    if (props.class) {
+      // class 增强处理
+      props.class = normalizeClass(props.class);
+    }
+  }
   return createBaseVNode(type, props, children, shapeFlag);
 }
-
 export function isVNode(value: any): value is VNode {
   return value && value.__is_VNode;
 }

@@ -35,6 +35,12 @@
         h(Fragment, null, [h('p', null, 'Fragment child 1'), h('p', null, 'Fragment child 2')]),
       ]);
       console.log(vnode4);
+      const vnode5 = h(
+        'div',
+        { class: ['class1', 'class2'], id: 'my-id', style: { color: 'red', fontSize: '20px' } },
+        'div with array class and style object'
+      );
+      console.log(vnode5);
     </script>
   </body>
 </html>
