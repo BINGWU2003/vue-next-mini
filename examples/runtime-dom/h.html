@@ -13,7 +13,7 @@
     </div>
     <script>
       console.log(VueNextMini);
-      const { h } = VueNextMini;
+      const { h, Text, Fragment, Comment } = VueNextMini;
       const vnode1 = h('div', { class: 'my-color' }, 'hello h function');
       console.log(vnode1);
       const vnode2 = h('div', { class: 'my-color' }, [
@@ -22,6 +22,19 @@
         h('a', { class: 'a-class' }, 'nested a tag'),
       ]);
       console.log(vnode2);
+      const component = {
+        render() {
+          return h('div', { class: 'component-class' }, 'I am a component');
+        },
+      };
+      const vnode3 = h(component);
+      console.log(vnode3);
+      const vnode4 = h('div', null, [
+        h(Text, null, 'This is a text node'),
+        h(Comment, null, 'This is a comment node'),
+        h(Fragment, null, [h('p', null, 'Fragment child 1'), h('p', null, 'Fragment child 2')]),
+      ]);
+      console.log(vnode4);
     </script>
   </body>
 </html>
