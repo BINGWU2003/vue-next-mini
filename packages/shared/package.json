@@ -17,7 +17,9 @@
     "dev": "rollup -c --watch",
     "build": "rollup -c",
     "clean": "rimraf dist && rimraf node_modules",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm build",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "publishConfig": {
     "access": "public"

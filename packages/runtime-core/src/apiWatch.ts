@@ -7,19 +7,19 @@ export type WatchOptions = {
   deep?: boolean;
 };
 
-export function watch<T = unknown>(
-  source: T,
-  cb?: (newVal: T, oldVal: T) => void,
-  watchOptions?: WatchOptions
-) {
+export type WatchCallback<T> = (
+  newVal: T,
+  oldVal: T,
+  // 注册一个清理函数
+  // 在下次回调执行前调用cleanup
+  onCleanup?: (cleanup: () => void) => void
+) => void;
+
+export function watch<T = unknown>(source: T, cb?: WatchCallback<T>, watchOptions?: WatchOptions) {
   return doWatch<T>(source, cb, watchOptions);
 }
 
-function doWatch<T>(
-  source: T,
-  cb?: (newVal: T, oldVal: T) => void,
-  { immediate, deep }: WatchOptions = {}
-) {
+function doWatch<T>(source: T, cb?: WatchCallback<T>, { immediate, deep }: WatchOptions = {}) {
   let getter: () => any;
   console.log(source);
 
@@ -35,8 +35,10 @@ function doWatch<T>(
     // 将普通值包装成 getter 函数
     getter = () => source;
   }
-  console.log(getter);
-
+  let cleanup: (() => void) | null = null;
+  const onCleanup = (fn: () => void) => {
+    cleanup = fn;
+  };
   if (cb && deep) {
     const baseGetter = getter;
     getter = () => {
@@ -50,7 +52,11 @@ function doWatch<T>(
     if (cb) {
       const newValue = effect.run();
       if (deep || hasChanged(newValue, oldValue)) {
-        cb(newValue, oldValue);
+        // 调用回调函数前，执行清理函数
+        if (cleanup) {
+          cleanup();
+        }
+        cb(newValue, oldValue, onCleanup);
         oldValue = newValue;
       }
     }

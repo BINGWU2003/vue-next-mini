@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../dist/index.iife.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p id="p1"></p>
+    </div>
+    <script>
+      console.log(VueNextMini);
+      const { reactive, watch } = VueNextMini;
+      // 模拟一个需要时间的异步请求
+      function mockFetch(id, time) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(`Data for ID: ${id}`);
+          }, time);
+        });
+      }
+
+      // 假设我们有一个响应式数据
+      const state = reactive({ id: 0 });
+
+      // 测试代码
+      watch(
+        () => state.id,
+        async (newId, oldId, onCleanup) => {
+          console.log('newId', newId, 'oldId', oldId);
+          let expired = false; // 闭包标记：当前请求是否“过期”
+
+          // 注册清理函数
+          // 如果下一次 watch 触发了，这个函数会先执行，把 expired 设为 true
+          onCleanup(() => {
+            expired = true;
+            console.log(`🧹 清理掉 ID: ${newId} 的副作用`);
+          });
+
+          // 模拟场景：
+          // ID 1 请求耗时 2000ms (慢)
+          // ID 2 请求耗时 500ms (快)
+          const time = newId === 1 ? 2000 : 500;
+
+          console.log(`开始请求 ID: ${newId}`);
+          const data = await mockFetch(newId, time);
+
+          // 如果过期了，就不要处理数据了
+          if (!expired) {
+            console.log(`✅ 更新 UI: ${data}`);
+          } else {
+            console.log(`❌ 忽略过期数据: ${data}`);
+          }
+        }
+      );
+
+      // --- 执行流程 ---
+
+      // 1. 触发第一次，ID=1 (慢请求，2秒后才回来)
+      state.id = 1;
+
+      // 2. 500毫秒后，快速切换 ID=2
+      setTimeout(() => {
+        state.id = 2; // 触发第二次
+        // 此时：
+        // 1. job 执行
+        // 2. 检测到上一次有 cleanup
+        // 3. 执行 cleanup() -> ID=1 的作用域里 expired 变成 true
+        // 4. 执行本次 cb (ID=2)
+      }, 500);
+
+      /*
+      预期输出：
+      1. 开始请求 ID: 1
+      2. (500ms后) 🧹 清理掉 ID: 1 的副作用  <-- 关键！在第二次请求开始前清理了第一次
+      3. 开始请求 ID: 2
+      4. (1000ms后) ✅ 更新 UI: Data for ID: 2  <-- ID 2 先回来，正常更新
+      5. (2500ms后) ❌ 忽略过期数据: Data for ID: 1 <-- ID 1 终于回来了，但因为 expired=true，被丢弃
+      */
+    </script>
+  </body>
+</html>
