@@ -47,6 +47,9 @@ export const isFunction = (val: unknown): val is (...args: any[]) => any =>
 export const extend = Object.assign;
 
 export const isString = (val: unknown): val is string => typeof val === 'string';
+
+export const isOn = (key: string): boolean => /^on[A-Z]/.test(key);
+
 export * from './shapeFlags';
 
 export * from './normalizeProp';
