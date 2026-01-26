@@ -12,6 +12,7 @@ export type VNode = {
   props: any;
   children: any;
   shapeFlag: number;
+  el?: Element | null;
 };
 
 export const Text = Symbol('Text');

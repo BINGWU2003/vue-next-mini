@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { ShapeFlags } from '@vue-next-mini/shared';
+import { extend, ShapeFlags } from '@vue-next-mini/shared';
 import { Fragment, Text } from './vnode';
 import type { VNode } from './vnode';
+import { nodeOps, patchProp } from '@vue-next-mini/runtime-dom';
 export type RendererOptions = {
   // 为element的prop打补丁
   patchProp(el: Element, key: string, prevValue: any, nextValue: any): void;
@@ -20,6 +20,35 @@ export function createRenderer(options: RendererOptions) {
 function baseCreateRenderer(options: RendererOptions) {
   const { patchProp, setElementText, insert, createElement } = options;
 
+  const processElement = (
+    oldVNode: VNode | null,
+    newVNode: VNode,
+    container: Element,
+    anchor?: Element | null
+  ) => {
+    if (oldVNode == null) {
+      // 挂载元素
+      mountElement(newVNode, container, anchor);
+    } else {
+      // 更新元素
+    }
+  };
+  const mountElement = (vnode: VNode, container: Element, anchor?: Element | null) => {
+    const { type, props, children, shapeFlag } = vnode;
+    const el = (vnode.el = createElement(type));
+    if (shapeFlag & ShapeFlags.TEXT_CHILDREN) {
+      setElementText(el, children);
+    } else if (shapeFlag & ShapeFlags.ARRAY_CHILDREN) {
+      // TODO
+    }
+    if (props) {
+      for (const key in props) {
+        const val = props[key];
+        patchProp(el, key, null, val);
+      }
+    }
+    insert(el, container, anchor);
+  };
   const patch = (oldVNode: VNode, newVNode: VNode, container: Element, anchor?: Element | null) => {
     if (oldVNode === newVNode) {
       return;
@@ -35,6 +64,7 @@ function baseCreateRenderer(options: RendererOptions) {
       default:
         if (shapeFlag & ShapeFlags.ELEMENT) {
           // 处理元素
+          processElement(oldVNode, newVNode, container, anchor);
         } else if (shapeFlag & ShapeFlags.COMPONENT) {
           // 处理组件
         }
@@ -51,4 +81,15 @@ function baseCreateRenderer(options: RendererOptions) {
     container._vnode = vnode;
   };
   return { render };
+}
+
+let renderer: ReturnType<typeof createRenderer> | null = null;
+
+const renderOptions: RendererOptions = extend({ patchProp }, nodeOps);
+
+function ensureRenderer() {
+  return renderer || (renderer = createRenderer(renderOptions));
+}
+export function render(vnode: VNode, container: any) {
+  return ensureRenderer().render(vnode, container);
 }
