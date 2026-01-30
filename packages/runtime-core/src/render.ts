@@ -1,4 +1,4 @@
-import { extend, ShapeFlags } from '@vue-next-mini/shared';
+import { EMPTY_OBJ, extend, ShapeFlags } from '@vue-next-mini/shared';
 import { Fragment, Text } from './vnode';
 import type { VNode } from './vnode';
 import { nodeOps, patchProp } from '@vue-next-mini/runtime-dom';
@@ -31,6 +31,7 @@ function baseCreateRenderer(options: RendererOptions) {
       mountElement(newVNode, container, anchor);
     } else {
       // 更新元素
+      patchElement(oldVNode, newVNode);
     }
   };
   const mountElement = (vnode: VNode, container: Element, anchor?: Element | null) => {
@@ -48,6 +49,66 @@ function baseCreateRenderer(options: RendererOptions) {
       }
     }
     insert(el, container, anchor);
+  };
+  const patchElement = (oldVNode: VNode, newVNode: VNode) => {
+    const el = (newVNode.el = oldVNode.el!);
+    const oldProps = oldVNode.props || EMPTY_OBJ;
+    const newProps = newVNode.props || EMPTY_OBJ;
+    // 更新 props
+    patchProps(el, newVNode, oldProps, newProps);
+    // 更新 children
+    patchChildren(oldVNode, newVNode, el);
+  };
+  const patchProps = (
+    el: Element,
+    newVNode: VNode,
+    oldProps: Record<string, any>,
+    newProps: Record<string, any>
+  ) => {
+    if (oldProps !== newProps) {
+      for (const key in newProps) {
+        const next = newProps[key];
+        const prev = oldProps[key];
+        // 添加或更新props
+        if (next !== prev) {
+          patchProp(el, key, prev, next);
+        }
+      }
+      if (oldProps !== EMPTY_OBJ) {
+        for (const key in oldProps) {
+          if (!(key in newProps)) {
+            // 删除旧的props
+            patchProp(el, key, oldProps[key], null);
+          }
+        }
+      }
+    }
+  };
+  const patchChildren = (oldVNode: VNode, newVNode: VNode, el: Element) => {
+    const oldShapeFlag = oldVNode.shapeFlag || 0;
+    const oldChildren = oldVNode.children;
+    const newChildren = newVNode.children;
+    const newShapeFlag = newVNode.shapeFlag || 0;
+    // 新子节点是文本
+    if (newShapeFlag & ShapeFlags.TEXT_CHILDREN) {
+      if (oldShapeFlag & ShapeFlags.ARRAY_CHILDREN) {
+        // TODO 卸载旧的子节点
+      }
+      if (oldChildren !== newChildren) {
+        // 设置文本
+        setElementText(el, newChildren);
+      }
+    } else {
+      // 旧子节点是数组
+      if (oldShapeFlag & ShapeFlags.ARRAY_CHILDREN) {
+        // TODO
+      } else {
+        // 旧子节点是文本
+        if (oldShapeFlag & ShapeFlags.TEXT_CHILDREN) {
+          setElementText(el, '');
+        }
+      }
+    }
   };
   const patch = (oldVNode: VNode, newVNode: VNode, container: Element, anchor?: Element | null) => {
     if (oldVNode === newVNode) {
@@ -78,6 +139,8 @@ function baseCreateRenderer(options: RendererOptions) {
       // patch
       patch(container._vnode || null, vnode, container);
     }
+    // 每次调用render函数，把container的_vnode指向最新的vnode
+    // 保持container的vnode是最新的
     container._vnode = vnode;
   };
   return { render };
