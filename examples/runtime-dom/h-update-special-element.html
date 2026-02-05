@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../dist/index.iife.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p id="p1"></p>
+      <p id="p2"></p>
+    </div>
+    <script>
+      console.log(VueNextMini);
+      const { h, render } = VueNextMini;
+      // 节点元素，文本内容和props变化
+      const vnode1 = h('div', { class: 'my-color' }, 'hello h function');
+
+      console.log(vnode1);
+      render(vnode1, document.getElementById('p1'));
+      // 类型从div变为input
+      // textarea 的 value 属性需要特殊处理
+      const vnode2 = h('TEXTAREA', {
+        class: 'my-color-new',
+        id: 'my-textarea',
+        type: 'text',
+        value: 'hello textarea value',
+      });
+      console.log(vnode2);
+      setTimeout(() => {
+        render(vnode2, document.getElementById('p1'));
+      }, 2000);
+    </script>
+  </body>
+</html>

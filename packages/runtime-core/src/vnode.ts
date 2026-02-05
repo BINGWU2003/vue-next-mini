@@ -8,11 +8,14 @@ import {
 } from '@vue-next-mini/shared';
 export type VNode = {
   __is_VNode: true;
+  // 节点类型
   type: any;
   props: any;
   children: any;
   shapeFlag: number;
   el?: Element | null;
+  // vnode的key，用于diff算法中优化比对
+  key?: string | number;
 };
 
 export const Text = Symbol('Text');
@@ -67,4 +70,8 @@ function normalizeChildren(vnode: VNode, children: any) {
   }
   vnode.children = children;
   vnode.shapeFlag |= type;
+}
+
+export function isSameVNodeType(n1: VNode, n2: VNode): boolean {
+  return n1.type === n2.type && n1.key === n2.key;
 }

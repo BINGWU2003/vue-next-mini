@@ -1,5 +1,5 @@
 import { EMPTY_OBJ, extend, ShapeFlags } from '@vue-next-mini/shared';
-import { Fragment, Text } from './vnode';
+import { Fragment, isSameVNodeType, Text } from './vnode';
 import type { VNode } from './vnode';
 import { nodeOps, patchProp } from '@vue-next-mini/runtime-dom';
 export type RendererOptions = {
@@ -11,6 +11,8 @@ export type RendererOptions = {
   insert(el: Element, parent: Element, anchor?: Element | null): void;
   // 创建element
   createElement(type: string): Element;
+  // 删除el
+  remove(el: Element): void;
 };
 
 export function createRenderer(options: RendererOptions) {
@@ -18,7 +20,7 @@ export function createRenderer(options: RendererOptions) {
 }
 
 function baseCreateRenderer(options: RendererOptions) {
-  const { patchProp, setElementText, insert, createElement } = options;
+  const { patchProp, setElementText, insert, createElement, remove } = options;
 
   const processElement = (
     oldVNode: VNode | null,
@@ -110,9 +112,22 @@ function baseCreateRenderer(options: RendererOptions) {
       }
     }
   };
-  const patch = (oldVNode: VNode, newVNode: VNode, container: Element, anchor?: Element | null) => {
+  const unmount = (vnode: VNode) => {
+    remove(vnode.el!);
+  };
+  const patch = (
+    oldVNode: VNode | null,
+    newVNode: VNode,
+    container: Element,
+    anchor?: Element | null
+  ) => {
     if (oldVNode === newVNode) {
       return;
+    }
+    // 元素类型不同，删除旧节点，再挂载新节点
+    if (oldVNode && !isSameVNodeType(oldVNode, newVNode)) {
+      unmount(oldVNode);
+      oldVNode = null;
     }
     const { shapeFlag, type } = newVNode;
     switch (type) {
@@ -132,9 +147,12 @@ function baseCreateRenderer(options: RendererOptions) {
     }
   };
 
-  const render = (vnode: VNode, container: any) => {
+  const render = (vnode: VNode | null, container: any) => {
     if (vnode == null) {
       // 卸载逻辑
+      if (container._vnode) {
+        unmount(container._vnode);
+      }
     } else {
       // patch
       patch(container._vnode || null, vnode, container);

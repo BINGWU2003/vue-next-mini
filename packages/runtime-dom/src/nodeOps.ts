@@ -10,4 +10,10 @@ export const nodeOps = {
   setElementText(el: Element, text: string) {
     el.textContent = text;
   },
+  remove(child: Node) {
+    const parent = child.parentNode;
+    if (parent) {
+      parent.removeChild(child);
+    }
+  },
 };
