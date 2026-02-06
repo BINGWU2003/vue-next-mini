@@ -16,4 +16,10 @@ export const nodeOps = {
       parent.removeChild(child);
     }
   },
+  createText(text: string): Text {
+    return doc.createTextNode(text);
+  },
+  setText(node: Text, text: string) {
+    node.nodeValue = text;
+  },
 };

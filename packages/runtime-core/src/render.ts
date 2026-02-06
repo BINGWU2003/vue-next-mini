@@ -13,6 +13,10 @@ export type RendererOptions = {
   createElement(type: string): Element;
   // 删除el
   remove(el: Element): void;
+  // 创建文本节点
+  createText(text: string): Text;
+  // 设置文本节点的文本
+  setText(node: Text, text: string): void;
 };
 
 export function createRenderer(options: RendererOptions) {
@@ -20,7 +24,7 @@ export function createRenderer(options: RendererOptions) {
 }
 
 function baseCreateRenderer(options: RendererOptions) {
-  const { patchProp, setElementText, insert, createElement, remove } = options;
+  const { patchProp, setElementText, insert, createElement, remove, createText, setText } = options;
 
   const processElement = (
     oldVNode: VNode | null,
@@ -34,6 +38,22 @@ function baseCreateRenderer(options: RendererOptions) {
     } else {
       // 更新元素
       patchElement(oldVNode, newVNode);
+    }
+  };
+  const processText = (oldVNode: VNode | null, newVNode: VNode, container: Element) => {
+    if (oldVNode == null) {
+      // 挂载文本节点
+      const textNode = createText(newVNode.children as string);
+      newVNode.el = textNode as any; // el can be Text or Element
+      insert(textNode as any, container);
+    } else {
+      // 更新文本节点
+      const el = (newVNode.el = oldVNode.el!) as unknown;
+      const oldText = oldVNode.children as string;
+      const newText = newVNode.children as string;
+      if (oldText !== newText) {
+        setText(el as Text, newText);
+      }
     }
   };
   const mountElement = (vnode: VNode, container: Element, anchor?: Element | null) => {
@@ -132,6 +152,7 @@ function baseCreateRenderer(options: RendererOptions) {
     const { shapeFlag, type } = newVNode;
     switch (type) {
       case Text:
+        processText(oldVNode, newVNode, container);
         break;
       case Fragment:
         break;
