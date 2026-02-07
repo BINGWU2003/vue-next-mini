@@ -16,6 +16,8 @@ export type VNode = {
   el?: Element | null;
   // vnode的key，用于diff算法中优化比对
   key?: string | number;
+  // 组件实例
+  component?: any;
 };
 
 export const Text = Symbol('Text');

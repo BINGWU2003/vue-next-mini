@@ -16,7 +16,6 @@ export function sleep(ms: number): Promise<void> {
  * 生成随机ID
  */
 export function generateId(): string {
-  console.log('generateId');
   return Math.random().toString(36).substring(2, 15);
 }
 

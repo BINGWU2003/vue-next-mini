@@ -2,6 +2,10 @@ import { EMPTY_OBJ, extend, ShapeFlags } from '@vue-next-mini/shared';
 import { Fragment, isSameVNodeType, Text } from './vnode';
 import type { VNode } from './vnode';
 import { nodeOps, patchProp } from '@vue-next-mini/runtime-dom';
+import { createComponentInstance, setupComponent } from './component';
+import { renderComponentRoot } from './componentRenderUtils';
+import { ReactiveEffect } from '@vue-next-mini/reactivity';
+import { queuePreFlushCb } from './scheduler';
 export type RendererOptions = {
   // 为element的prop打补丁
   patchProp(el: Element, key: string, prevValue: any, nextValue: any): void;
@@ -40,6 +44,19 @@ function baseCreateRenderer(options: RendererOptions) {
       patchElement(oldVNode, newVNode);
     }
   };
+  const processComponent = (
+    oldVNode: VNode | null,
+    newVNode: VNode,
+    container: Element,
+    anchor?: Element | null
+  ) => {
+    if (oldVNode == null) {
+      // 挂载组件
+      mountComponent(newVNode, container, anchor);
+    } else {
+      // 更新组件
+    }
+  };
   const processText = (oldVNode: VNode | null, newVNode: VNode, container: Element) => {
     if (oldVNode == null) {
       // 挂载文本节点
@@ -71,6 +88,42 @@ function baseCreateRenderer(options: RendererOptions) {
       }
     }
     insert(el, container, anchor);
+  };
+  const mountComponent = (vnode: VNode, container: Element, anchor?: Element | null) => {
+    vnode.component = createComponentInstance(vnode);
+    const instance = vnode.component;
+    setupComponent(instance);
+    // 渲染组件
+    setupRenderEffect(instance, vnode, container, anchor);
+  };
+  const setupRenderEffect = (
+    instance: any,
+    vnode: VNode,
+    container: Element,
+    anchor?: Element | null
+  ) => {
+    const componentUpdateFn = () => {
+      // 组件挂载之前
+      if (!instance.isMounted) {
+        // 把组件的render函数返回值转换成vnode
+        // component.render  -> vnode
+        const subTree = (instance.subTree = renderComponentRoot(instance));
+        // 挂载subTree
+        patch(null, subTree, container, anchor);
+        // 挂载子节点
+        vnode.el = subTree.el;
+      } else {
+        // 组件
+      }
+    };
+    // 创建响应式effect
+    // 包装带有调度器scheduler的componentUpdateFn
+    const effect = (instance.effect = new ReactiveEffect(componentUpdateFn, () =>
+      queuePreFlushCb(update)
+    ));
+    const update = (instance.update = () => effect.run());
+    //update执行之后，此时的activeEffect 指向 effect
+    update();
   };
   const patchElement = (oldVNode: VNode, newVNode: VNode) => {
     const el = (newVNode.el = oldVNode.el!);
@@ -164,6 +217,7 @@ function baseCreateRenderer(options: RendererOptions) {
           processElement(oldVNode, newVNode, container, anchor);
         } else if (shapeFlag & ShapeFlags.COMPONENT) {
           // 处理组件
+          processComponent(oldVNode, newVNode, container, anchor);
         }
     }
   };

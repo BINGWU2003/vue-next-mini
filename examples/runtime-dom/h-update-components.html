@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../dist/index.iife.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p id="p1"></p>
+      <p id="p2"></p>
+    </div>
+    <script>
+      console.log(VueNextMini);
+      const { h, render } = VueNextMini;
+      const component = {
+        name: 'MyComponent',
+        render() {
+          return h('div', 'hello component');
+        },
+      };
+      const vnode = h(component);
+      setTimeout(() => {
+        render(vnode, document.getElementById('p1'));
+      }, 2000);
+    </script>
+  </body>
+</html>
