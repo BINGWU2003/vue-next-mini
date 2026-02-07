@@ -103,13 +103,19 @@ function baseCreateRenderer(options: RendererOptions) {
     anchor?: Element | null
   ) => {
     const componentUpdateFn = () => {
-      // 组件挂载之前
       if (!instance.isMounted) {
+        const { bm, m } = instance;
+        if (bm) {
+          bm();
+        }
         // 把组件的render函数返回值转换成vnode
         // component.render  -> vnode
         const subTree = (instance.subTree = renderComponentRoot(instance));
         // 挂载subTree
         patch(null, subTree, container, anchor);
+        if (m) {
+          m();
+        }
         // 挂载子节点
         vnode.el = subTree.el;
       } else {
