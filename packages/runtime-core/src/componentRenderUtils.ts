@@ -36,6 +36,8 @@ export function renderComponentRoot(instance: any) {
       };
        */
       // 此时的data已是响应式数据
+      // 如果render函数读取了响应式数据，此时render函数的执行会触发依赖收集(getter)
+      // effect 为 包装之后带有调度器scheduler的componentUpdateFn
       result = normalizeVNode(render!.call(data));
     }
   } catch (err) {

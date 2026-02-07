@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../dist/index.iife.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p id="p1"></p>
+      <p id="p2"></p>
+    </div>
+    <script>
+      console.log(VueNextMini);
+      const { h, render } = VueNextMini;
+      const component = {
+        name: 'MyComponent',
+        data() {
+          return {
+            msg: 'hello data from component',
+          };
+        },
+        render() {
+          return h('div', this.msg);
+        },
+        create() {
+          setTimeout(() => {
+            this.msg = 'hello data from component update';
+          }, 2000);
+        },
+      };
+
+      const vnode = h(component);
+      render(vnode, document.getElementById('p1'));
+    </script>
+  </body>
+</html>

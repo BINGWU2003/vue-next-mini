@@ -108,6 +108,7 @@ function baseCreateRenderer(options: RendererOptions) {
         if (bm) {
           bm();
         }
+        // renderComponentRoot 的执行会触发依赖收集
         // 把组件的render函数返回值转换成vnode
         // component.render  -> vnode
         const subTree = (instance.subTree = renderComponentRoot(instance));
@@ -118,8 +119,22 @@ function baseCreateRenderer(options: RendererOptions) {
         }
         // 挂载子节点
         vnode.el = subTree.el;
+        instance.isMounted = true;
       } else {
-        // 组件
+        // 组件更新
+        // eslint-disable-next-line prefer-const
+        let { next, vnode } = instance;
+        if (!next) {
+          next = vnode;
+        }
+        // 新的vnode
+        const nextTree = renderComponentRoot(instance);
+        // 旧的vnode
+        const prevTree = instance.subTree;
+        instance.subTree = nextTree;
+        patch(prevTree, nextTree, container, anchor);
+        // 更新组件的dom元素
+        next.el = nextTree.el;
       }
     };
     // 创建响应式effect

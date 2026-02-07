@@ -50,8 +50,12 @@ function applyOptions(instance: any) {
     register(hook.bind(instance.data), instance);
   }
   // 给instance注册生命周期钩子
-  registerLifecycleHook(onBeforeMount, beforeMount);
-  registerLifecycleHook(onMounted, mounted);
+  if (beforeMount) {
+    registerLifecycleHook(onBeforeMount, beforeMount);
+  }
+  if (mounted) {
+    registerLifecycleHook(onMounted, mounted);
+  }
 }
 
 function callHook(hook: (...args: any[]) => any, data?: ReturnType<typeof reactive>) {
