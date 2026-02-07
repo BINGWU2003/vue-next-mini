@@ -16,8 +16,13 @@
       const { h, render } = VueNextMini;
       const component = {
         name: 'MyComponent',
+        data() {
+          return {
+            msg: 'hello data from component',
+          };
+        },
         render() {
-          return h('div', 'hello component');
+          return h('div', this.msg);
         },
       };
       const vnode = h(component);

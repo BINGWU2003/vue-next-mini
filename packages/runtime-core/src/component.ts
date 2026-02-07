@@ -1,5 +1,6 @@
+import { reactive } from '@vue-next-mini/reactivity';
 import { VNode } from './vnode';
-import { generateId } from '@vue-next-mini/shared';
+import { generateId, isObject } from '@vue-next-mini/shared';
 export function createComponentInstance(vnode: VNode) {
   const type = vnode.type;
   const instance = {
@@ -20,4 +21,16 @@ export function setupComponent(instance: any) {
   // 获取组件的 render 函数
   // component = { render: () => h('div', 'hello world') }
   instance.render = Component.render;
+  // 处理组件的 options 数据
+  applyOptions(instance);
+}
+
+function applyOptions(instance: any) {
+  const options = instance.type;
+  if (options.data) {
+    const data = options.data();
+    if (isObject(data)) {
+      instance.data = reactive(data);
+    }
+  }
 }
