@@ -1,9 +1,9 @@
-import { EMPTY_OBJ, extend, ShapeFlags } from '@vue-next-mini/shared';
+import { EMPTY_OBJ, extend, isString, ShapeFlags } from '@vue-next-mini/shared';
 import { Fragment, isSameVNodeType, Text } from './vnode';
 import type { VNode } from './vnode';
 import { nodeOps, patchProp } from '@vue-next-mini/runtime-dom';
 import { createComponentInstance, setupComponent } from './component';
-import { renderComponentRoot } from './componentRenderUtils';
+import { normalizeVNode, renderComponentRoot } from './componentRenderUtils';
 import { ReactiveEffect } from '@vue-next-mini/reactivity';
 import { queuePreFlushCb } from './scheduler';
 export type RendererOptions = {
@@ -79,7 +79,7 @@ function baseCreateRenderer(options: RendererOptions) {
     if (shapeFlag & ShapeFlags.TEXT_CHILDREN) {
       setElementText(el, children);
     } else if (shapeFlag & ShapeFlags.ARRAY_CHILDREN) {
-      // TODO
+      mountChildren(children, el, anchor);
     }
     if (props) {
       for (const key in props) {
@@ -88,6 +88,16 @@ function baseCreateRenderer(options: RendererOptions) {
       }
     }
     insert(el, container, anchor);
+  };
+  const mountChildren = (children: any[], container: Element, anchor?: Element | null) => {
+    if (isString(children)) {
+      children = children.split('');
+    }
+    children.forEach((child) => {
+      // 处理子节点
+      const childVNode = (child = normalizeVNode(child));
+      patch(null, childVNode, container, anchor);
+    });
   };
   const mountComponent = (vnode: VNode, container: Element, anchor?: Element | null) => {
     vnode.component = createComponentInstance(vnode);
@@ -197,7 +207,8 @@ function baseCreateRenderer(options: RendererOptions) {
     } else {
       // 旧子节点是数组
       if (oldShapeFlag & ShapeFlags.ARRAY_CHILDREN) {
-        // TODO
+        // diff算法
+        patchKeyedChildren(oldChildren, newChildren, el);
       } else {
         // 旧子节点是文本
         if (oldShapeFlag & ShapeFlags.TEXT_CHILDREN) {
@@ -205,6 +216,40 @@ function baseCreateRenderer(options: RendererOptions) {
         }
       }
     }
+  };
+  const patchKeyedChildren = (oldChildren: any[], newChildren: any[], container: Element) => {
+    let i = 0;
+    const oldLen = oldChildren.length;
+    const newLen = newChildren.length;
+    let oldEnd = oldLen - 1;
+    let newEnd = newLen - 1;
+    // 从头同步
+    while (i <= oldEnd && i <= newEnd) {
+      const oldVNode = (oldChildren[i] = normalizeVNode(oldChildren[i]));
+      const newVNode = (newChildren[i] = normalizeVNode(newChildren[i]));
+
+      if (isSameVNodeType(oldVNode, newVNode)) {
+        patch(oldVNode, newVNode, container);
+      } else {
+        break;
+      }
+      i++;
+    }
+
+    // 从尾同步
+    while (i <= oldEnd && i <= newEnd) {
+      const oldVNode = (oldChildren[oldEnd] = normalizeVNode(oldChildren[oldEnd]));
+      const newVNode = (newChildren[newEnd] = normalizeVNode(newChildren[newEnd]));
+      if (isSameVNodeType(oldVNode, newVNode)) {
+        patch(oldVNode, newVNode, container);
+      } else {
+        break;
+      }
+      oldEnd--;
+      newEnd--;
+    }
+
+    // 新节点多于旧节点（挂载）
   };
   const unmount = (vnode: VNode) => {
     remove(vnode.el!);

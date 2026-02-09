@@ -15,7 +15,7 @@ export type VNode = {
   shapeFlag: number;
   el?: Element | null;
   // vnode的key，用于diff算法中优化比对
-  key?: string | number;
+  key: string | number;
   // 组件实例
   component?: any;
 };
@@ -49,6 +49,7 @@ function createBaseVNode(type: any, props: any, children: any, shapeFlag: number
     props,
     children,
     shapeFlag,
+    key: props && props.key,
   };
   normalizeChildren(vnode, children);
   return vnode;
