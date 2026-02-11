@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../dist/index.iife.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p id="p1"></p>
+      <p id="p2"></p>
+    </div>
+    <script>
+      // diff算法：旧节点多于新节点（卸载）
+      // key 和 type 都相同，复用节点，更新文本内容
+      console.log(VueNextMini);
+      const { h, render } = VueNextMini;
+      const vnode = h('ul', [
+        h('li', { key: 1 }, 'a'),
+        h('li', { key: 2 }, 'b'),
+        h('li', { key: 3 }, 'c'),
+      ]);
+
+      render(vnode, document.getElementById('p1'));
+      setTimeout(() => {
+        const newVnode = h('ul', [h('li', { key: 2 }, '3'), h('li', { key: 3 }, '4')]);
+        render(newVnode, document.getElementById('p1'));
+      }, 2000);
+    </script>
+  </body>
+</html>

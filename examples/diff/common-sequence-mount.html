@@ -16,11 +16,7 @@
       // key 和 type 都相同，复用节点，更新文本内容
       console.log(VueNextMini);
       const { h, render } = VueNextMini;
-      const vnode = h('ul', [
-        h('li', { key: 1 }, 'a'),
-        h('li', { key: 2 }, 'b'),
-        h('li', { key: 3 }, 'c'),
-      ]);
+      const vnode = h('ul', [h('li', { key: 2 }, 'b'), h('li', { key: 3 }, 'c')]);
 
       render(vnode, document.getElementById('p1'));
       setTimeout(() => {

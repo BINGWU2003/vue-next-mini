@@ -249,7 +249,28 @@ function baseCreateRenderer(options: RendererOptions) {
       newEnd--;
     }
 
-    // 新节点多于旧节点（挂载）
+    console.log('oldEnd', oldEnd);
+    console.log('newEnd', newEnd);
+    console.log('i', i);
+
+    if (i > oldEnd) {
+      // 新节点多于旧节点（挂载）
+      // 此时 oldEnd = -1
+      if (i <= newEnd) {
+        const anchor = newEnd + 1 < newLen ? newChildren[newEnd + 1].el : null;
+        while (i <= newEnd) {
+          patch(null, (newChildren[i] = normalizeVNode(newChildren[i])), container, anchor);
+          i++;
+        }
+      }
+    } else if (i > newEnd) {
+      // 旧节点多于新节点（卸载）
+      // 此时 newEnd = -1
+      while (i <= oldEnd) {
+        unmount(oldChildren[i]);
+        i++;
+      }
+    }
   };
   const unmount = (vnode: VNode) => {
     remove(vnode.el!);
