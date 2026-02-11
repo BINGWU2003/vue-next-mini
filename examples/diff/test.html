@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // arr: 是一个数组，代表新节点在旧列表中的索引位置（即 source 数组）
+      // 返回值: 最长递增子序列在 arr 中的索引
+      function getSequence(arr) {
+        const p = arr.slice(); // p 数组用于回溯，记录前驱节点
+        const result = [0]; // result 存储的是 arr 的【索引】，初始化放入第0个
+
+        let i, j, u, v, c;
+        const len = arr.length;
+
+        for (i = 0; i < len; i++) {
+          const arrI = arr[i];
+          // 0 在 Vue 的 diff 中代表新增节点，不参与 LIS 计算
+          if (arrI !== 0) {
+            j = result[result.length - 1];
+
+            // 1. 贪心：如果当前值 > result 末尾的值，直接追加
+            if (arr[j] < arrI) {
+              p[i] = j; // 记录前驱：i 的前一个是 j
+              result.push(i);
+              continue;
+            }
+
+            // 2. 二分查找：如果当前值小，找到 result 中第一个比 arrI 大的位置进行替换
+            u = 0;
+            v = result.length - 1;
+            while (u < v) {
+              // (位运算取整，相当于 Math.floor((u + v) / 2))
+              c = (u + v) >> 1;
+              if (arr[result[c]] < arrI) {
+                u = c + 1;
+              } else {
+                v = c;
+              }
+            }
+
+            // 3. 替换操作：让序列增长的潜力更大
+            if (arrI < arr[result[u]]) {
+              if (u > 0) {
+                p[i] = result[u - 1]; // 记录前驱
+              }
+              result[u] = i; // 替换索引
+            }
+          }
+        }
+        console.log('arr', arr);
+        console.log('result', structuredClone(result));
+        console.log('p', structuredClone(p));
+        // 4. 回溯修正：因为贪心替换打乱了顺序，需要倒序恢复正确的路径
+        u = result.length;
+        v = result[u - 1];
+        while (u-- > 0) {
+          result[u] = v;
+          v = p[v]; // 顺着 p 数组找回上一个正确的节点
+        }
+
+        return result;
+      }
+      console.log(getSequence([2, 4, 5, 3]));
+    </script>
+  </body>
+</html>
