@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../dist/index.iife.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p id="p1"></p>
+      <p id="p2"></p>
+    </div>
+    <script>
+      // diff算法：乱序
+      // key 和 type 都相同，复用节点，更新文本内容
+      console.log(VueNextMini);
+      const { h, render } = VueNextMini;
+      const vnode = h('ul', [
+        h(
+          'li',
+          {
+            key: 1,
+          },
+          'a'
+        ),
+        h(
+          'li',
+          {
+            key: 2,
+          },
+          'b'
+        ),
+        h(
+          'li',
+          {
+            key: 3,
+          },
+          'c'
+        ),
+        h(
+          'li',
+          {
+            key: 4,
+          },
+          'd'
+        ),
+        h(
+          'li',
+          {
+            key: 5,
+          },
+          'e'
+        ),
+      ]);
+      // 挂载
+      render(vnode, document.querySelector('#app'));
+
+      // 延迟两秒，生成新的 vnode，进行更新操作
+      setTimeout(() => {
+        const vnode2 = h('ul', [
+          h(
+            'li',
+            {
+              key: 1,
+            },
+            'new-a'
+          ),
+          h(
+            'li',
+            {
+              key: 3,
+            },
+            'new-c'
+          ),
+          h(
+            'li',
+            {
+              key: 2,
+            },
+            'new-b'
+          ),
+          h(
+            'li',
+            {
+              key: 6,
+            },
+            'new-f'
+          ),
+          h(
+            'li',
+            {
+              key: 5,
+            },
+            'new-e'
+          ),
+        ]);
+        render(vnode2, document.querySelector('#app'));
+      }, 2000);
+    </script>
+  </body>
+</html>
